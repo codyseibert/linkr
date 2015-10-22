@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+model .title {
+  width: 100%;
+  height: 75px;
+  cursor: pointer;
+  font-size: 30px; }
+
+model .title:hover {
+  background-color: #EEE; }
+
+editable {
+  padding: 20px; }
