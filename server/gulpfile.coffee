@@ -4,8 +4,13 @@ del = require 'del'
 coffee = require 'gulp-coffee'
 gutil = require 'gulp-util'
 nodemon = require 'gulp-nodemon'
+path = require('path')
+exec = require('child_process').exec
+async = require('async')
+sync = require('gulp-sync')(gulp)
+rimraf = require('rimraf')
 
-gulp.task 'nodemon', ['build'], ->
+gulp.task 'nodemon', ->
   nodemon
     script: 'dist/server.js'
     ext: 'js'
@@ -24,12 +29,12 @@ gulp.task 'watch', ->
     'coffee'
   ]
 
-gulp.task 'build', [
+gulp.task 'build', sync.sync [
   'clean'
   'coffee'
 ]
 
-gulp.task 'default', [
+gulp.task 'default', sync.sync [
   'build'
   'nodemon'
   'watch'
