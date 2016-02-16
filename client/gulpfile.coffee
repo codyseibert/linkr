@@ -33,7 +33,7 @@ gulp.task 'templates', ['jade'], ->
   gulp.src ['tmp/templates/**/*.html', '!tmp/templates/index.html']
     .pipe ngTemplates
       filename: 'templates.js'
-      module: 'recipes'
+      module: 'linkr'
       standalone: false
     .pipe gulp.dest 'dist'
     .pipe connect.reload()

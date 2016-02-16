@@ -2,15 +2,15 @@ module.exports = (
   $stateProvider,
   $urlRouterProvider
 ) ->
+
   $urlRouterProvider.otherwise '/'
 
   $stateProvider
-    .state 'recipes',
+    .state 'main',
       url: '/'
       views:
         'main':
-          controller: 'RecipesController'
-          templateUrl: 'recipes/recipes.html'
+          template: '<main></main>'
 
 
   return this

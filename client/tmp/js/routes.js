@@ -1,11 +1,10 @@
 module.exports = function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/');
-  $stateProvider.state('recipes', {
+  $stateProvider.state('main', {
     url: '/',
     views: {
       'main': {
-        controller: 'RecipesController',
-        templateUrl: 'recipes/recipes.html'
+        template: '<main></main>'
       }
     }
   });

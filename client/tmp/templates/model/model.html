@@ -1,9 +1,0 @@
-
-<div> 
-  <div ng-click="toggle(model)" class="title">{{model[display] || 'Click to Edit Recipe ' + model[key]}}</div>
-  <div ng-show="expanded[model[key]]" class="panel">
-    <editable ng-if="attributes[attribute]" ng-repeat="(attribute, value) in model" attribute="{{attribute}}" model="model[attribute]"></editable>
-    <button ng-click="save(model)">Save</button>
-    <button ng-click="delete(model)">Delete</button>
-  </div>
-</div>

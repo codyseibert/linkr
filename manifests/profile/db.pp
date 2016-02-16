@@ -10,9 +10,9 @@ class linkr::profile::db (
   }
 
   class { '::mysql::server':
-    override_options => {
-      mysqld => { bind-address => '0.0.0.0'}
-    },
+    # override_options => {
+    #   mysqld => { bind-address => '0.0.0.0'}
+    # },
     databases   => {
       'linkr'  => {
         ensure  => 'present',
@@ -20,16 +20,16 @@ class linkr::profile::db (
       },
     },
     grants => {
-      'linkr@%/linkr.*' => {
+      'linkr@localhost/linkr.*' => {
         ensure     => 'present',
         options    => ['GRANT'],
-        privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
+        privileges => ['SELECT', 'INSERT', 'CREATE', 'UPDATE', 'DELETE'],
         table      => 'linkr.*',
-        user       => 'linkr@%',
+        user       => 'linkr@localhost',
       },
     },
     users => {
-      'linkr@%' => {
+      'linkr@localhost' => {
         ensure                   => 'present',
         max_connections_per_hour => '0',
         max_queries_per_hour     => '0',

@@ -2,12 +2,12 @@ var angular, app;
 
 angular = require('angular');
 
-app = require('angular').module('recipes', [require('angular-ui-router'), require('angular-sanitize')]);
+app = require('angular').module('linkr', [require('angular-ui-router')]);
 
 app.config(require('./routes'));
 
-require('./recipes');
+require('./util');
 
-require('./model');
+require('./entries');
 
-require('./editable');
+require('./main');
