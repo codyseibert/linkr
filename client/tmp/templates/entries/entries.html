@@ -1,7 +1,9 @@
 
-<input ng-model="$ctrl.entry.title"/>
-<button ng-click="$ctrl.createEntry($ctrl.entry)">Create</button>
-<div ng-repeat="entry in $ctrl.entries" ng-click="$ctrl.selectEntry($index)" class="entry"> 
+<div ng-repeat="entry in entries" ng-click="entryClicked($index)" class="entry"> 
   <div class="title">{{entry.title}}</div>
-  <button ng-click="$ctrl.deleteEntry($index)">X</button>
+  <button ng-click="deleteEntry($index)">X</button>
+</div>
+<div class="entry">
+  <input ng-model="entry.title"/>
+  <button ng-click="createEntry(entry)">Create</button>
 </div>

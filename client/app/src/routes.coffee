@@ -10,7 +10,8 @@ module.exports = (
       url: '/'
       views:
         'main':
-          template: '<main></main>'
+          controller: 'MainController'
+          templateUrl: 'main/main.html'
 
 
   return this

@@ -1,18 +1,17 @@
-
-
-input(
-  ng-model="$ctrl.entry.title"
-)
-
-button(
-  ng-click="$ctrl.createEntry($ctrl.entry)"
-) Create
-
 .entry(
-  ng-repeat="entry in $ctrl.entries"
-  ng-click="$ctrl.selectEntry($index)"
+  ng-repeat="entry in entries"
+  ng-click="entryClicked($index)"
 ) 
   .title {{entry.title}}
   button(
-    ng-click="$ctrl.deleteEntry($index)"
+    ng-click="deleteEntry($index)"
   ) X
+  
+.entry
+  input(
+    ng-model="entry.title"
+  )
+
+  button(
+    ng-click="createEntry(entry)"
+  ) Create

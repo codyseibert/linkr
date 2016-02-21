@@ -2,4 +2,4 @@ var app;
 
 app = require('angular').module('linkr');
 
-app.component('main', require('./main_component'));
+app.controller('MainController', require('./main_controller'));

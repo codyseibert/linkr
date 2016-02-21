@@ -4,7 +4,8 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     url: '/',
     views: {
       'main': {
-        template: '<main></main>'
+        controller: 'MainController',
+        templateUrl: 'main/main.html'
       }
     }
   });

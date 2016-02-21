@@ -34972,35 +34972,33 @@ require('./angular');
 module.exports = angular;
 
 },{"./angular":2}],4:[function(require,module,exports){
-module.exports = {
-  bindings: {
-    entries: '<'
-  },
-  templateUrl: 'entries/entries.html',
-  controller: function($scope, EntriesService) {
-    var currentEntry;
-    this.entry = {};
-    currentEntry = null;
-    this.createEntry = (function(_this) {
-      return function(entry) {
-        entry = {
-          title: entry.title
-        };
-        return EntriesService.create(entry).then(function(created) {
-          _this.entries.push(created);
-          return _this.entry = {};
-        });
+module.exports = function($compile, EntriesService) {
+  return {
+    restrict: 'E',
+    scope: {
+      entries: '='
+    },
+    templateUrl: 'entries/entries.html',
+    link: function(scope, elem, attr) {
+      return scope.entryClicked = function(index) {
+        var id;
+        id = scope.entries[index].id;
+        console.log(id);
+        return EntriesService.findAll({
+          entryId: id
+        }).then((function(_this) {
+          return function(entries) {
+            var elm;
+            console.log(entries);
+            $scope.entries = entries;
+            elm = angular.element('<entries entries="entries"></entries>');
+            angular.element(document.querySelector('#main')).append(elm);
+            return $compile(elm)($scope);
+          };
+        })(this));
       };
-    })(this);
-    this.deleteEntry = (function(_this) {
-      return function(index) {
-        return EntriesService["delete"](_this.entries[index]).then(function() {
-          return _this.entries.splice(index, 1);
-        });
-      };
-    })(this);
-    return this;
-  }
+    }
+  };
 };
 
 },{}],5:[function(require,module,exports){
@@ -35014,11 +35012,11 @@ var app;
 
 app = require('angular').module('linkr');
 
-app.component('entries', require('./entries_component'));
+app.directive('entries', require('./entries_directive'));
 
 app.service('EntriesService', require('./entries_service'));
 
-},{"./entries_component":4,"./entries_service":5,"angular":3}],7:[function(require,module,exports){
+},{"./entries_directive":4,"./entries_service":5,"angular":3}],7:[function(require,module,exports){
 var angular, app;
 
 angular = require('angular');
@@ -35038,26 +35036,22 @@ var app;
 
 app = require('angular').module('linkr');
 
-app.component('main', require('./main_component'));
+app.controller('MainController', require('./main_controller'));
 
-},{"./main_component":9,"angular":3}],9:[function(require,module,exports){
-module.exports = {
-  templateUrl: 'main/main.html',
-  controller: function($scope, $compile, EntriesService) {
-    EntriesService.findAll({
-      entryId: null
-    }).then((function(_this) {
-      return function(entries) {
-        var elm;
-        console.log(entries);
-        $scope.entries = entries;
-        elm = angular.element('<entries entries="entries"></entries>');
-        angular.element(document.querySelector('#main')).append(elm);
-        return $compile(elm)($scope);
-      };
-    })(this));
-    return this;
-  }
+},{"./main_controller":9,"angular":3}],9:[function(require,module,exports){
+module.exports = function($scope, $compile, EntriesService) {
+  return EntriesService.findAll({
+    entryId: null
+  }).then((function(_this) {
+    return function(entries) {
+      var elm;
+      console.log(entries);
+      $scope.entries = entries;
+      elm = angular.element('<entries entries="entries"></entries>');
+      angular.element(document.querySelector('#main')).append(elm);
+      return $compile(elm)($scope);
+    };
+  })(this));
 };
 
 },{}],10:[function(require,module,exports){
@@ -35067,7 +35061,8 @@ module.exports = function($stateProvider, $urlRouterProvider) {
     url: '/',
     views: {
       'main': {
-        template: '<main></main>'
+        controller: 'MainController',
+        templateUrl: 'main/main.html'
       }
     }
   });
