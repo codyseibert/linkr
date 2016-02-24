@@ -1,17 +1,18 @@
 class linkr::profile::api (
 ) {
-
-  yumrepo { 'codyseibert':
-    name => 'codyseibert',
-    descr => 'codyseibert',
-    gpgcheck => 0,
-    enabled => 1,
-    mirrorlist => absent,
-    repo_gpgcheck => 0,
-    baseurl => 'http://104.131.253.44/repo',
-    ensure => present,
-    http_caching => 'none',
-    metadata_expire => 1
+  if defined(Yumrepo['codyseibert']) == false {
+    yumrepo { 'codyseibert':
+      name => 'codyseibert',
+      descr => 'codyseibert',
+      gpgcheck => 0,
+      enabled => 1,
+      mirrorlist => absent,
+      repo_gpgcheck => 0,
+      baseurl => 'http://rpms.codyseibert.com',
+      ensure => present,
+      http_caching => 'none',
+      metadata_expire => 1
+    }
   }
 
   if defined(Package['rubygems']) == false {
@@ -36,7 +37,7 @@ class linkr::profile::api (
     }
   }
 
-  if defined(User['node']) == false {
+  if defined(User['linkr']) == false {
     user { 'node':
       ensure     => "present",
       managehome => true,

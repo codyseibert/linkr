@@ -32,8 +32,8 @@ module.exports = (grunt) ->
         defaultAttributes:
           mode: 755
           dirMode: 755
-          user: 'node'
-          group: 'node'
+          user: 'linkr'
+          group: 'linkr'
         preInstallScript: ['exit 0']
         postInstallScript: [
           'systemctl daemon-reload'
@@ -49,9 +49,9 @@ module.exports = (grunt) ->
         files: [
           cwd: '<%= config.dist %>'
           src: '**/*'
-          dest: "/home/node/apps/<%= config.rpmName %>"
-          user: 'node'
-          group: 'node'
+          dest: "/home/linkr/<%= config.rpmName %>"
+          user: 'linkr'
+          group: 'linkr'
         ,
           cwd: 'resources/systemd/'
           src: '*'
@@ -62,14 +62,14 @@ module.exports = (grunt) ->
           cwd: "templates"
           src: 'app.log'
           dest: '/var/log/<%= config.rpmName %>'
-          user: 'node'
-          group: 'node'
+          user: 'linkr'
+          group: 'linkr'
         ,
           cwd: "templates"
           src: 'error.log'
           dest: '/var/log/<%= config.rpmName %>'
-          user: 'node'
-          group: 'node'
+          user: 'linkr'
+          group: 'linkr'
         ]
 
   grunt.task.registerMultiTask 'copy_node_deps', 'A task which loops through the package.json, finds the production dependencies, and copies them into a dist folder', ->

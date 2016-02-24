@@ -38,8 +38,8 @@ module.exports = (grunt) ->
           cwd: '<%= config.dist %>'
           src: '**/*'
           dest: "/var/www/html/<%= config.rpmName %>"
-          user: 'www-data'
-          group: 'www-data'
+          user: 'root'
+          group: 'root'
         ]
 
   grunt.registerTask "distribute", ->

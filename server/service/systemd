@@ -1,18 +1,18 @@
 [Service]
-WorkingDirectory=/home/node/apps/linkr-api
-ExecStart=/usr/local/node/node-default/bin/pm2 start --name linkr-api -e /var/log/linkr-api/error.log -o /var/log/linkr-api/app.log --merge-logs server.js
-ExecStop=/usr/local/node/node-default/bin/pm2 stop linkr-api
-ExecReload=/usr/local/node/node-default/bin/pm2 restart linkr-api
+WorkingDirectory=/home/linkr/linkr-api
+ExecStart=/usr/bin/pm2 start --name linkr-api -e /var/log/linkr-api/error.log -o /var/log/linkr-api/app.log --merge-logs server.js
+ExecStop=/usr/bin/pm2 stop linkr-api
+ExecReload=/usr/bin/pm2 restart linkr-api
 Type=forking
 RemainAfterExit=true
 Restart=no
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=linkr-api
-User=node
-Group=node
+User=linkr
+Group=linkr
 Environment='NODE_ENV=production'
-Environment='PATH=$PATH:/usr/local/node/node-default/bin'
+Environment='PATH=$PATH:/usr/bin'
 
 [Install]
 WantedBy=multi-user.target
