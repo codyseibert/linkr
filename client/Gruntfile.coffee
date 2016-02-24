@@ -11,9 +11,10 @@ module.exports = (grunt) ->
   grunt.initConfig
     config: config
 
-    clean: [
-      'rpms'
-    ]
+    clean:
+      rpms: [
+        'rpms'
+      ]
 
     easy_rpm:
       options:
