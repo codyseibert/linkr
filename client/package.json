@@ -17,6 +17,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "grunt": "~0.4.5",
     "gulp": "^3.9.0",
     "gulp-brass": "^0.1.4",
     "gulp-browserify": "^0.5.1",
