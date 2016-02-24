@@ -48,7 +48,9 @@ module.exports = (grunt) ->
     else
       build = grunt.option('build')
       config.rpmVersion = build
-      grunt.task.run 'clean'
-      grunt.task.run 'easy_rpm'
+      grunt.task.run [
+        'clean:rpm'
+        'easy_rpm'
+      ]
 
   return
