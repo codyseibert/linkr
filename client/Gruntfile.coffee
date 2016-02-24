@@ -11,10 +11,9 @@ module.exports = (grunt) ->
   grunt.initConfig
     config: config
 
-    clean:
-      rpms: [
-        'rpms'
-      ]
+    clean: [
+      'rpms'
+    ]
 
     easy_rpm:
       options:
@@ -49,7 +48,7 @@ module.exports = (grunt) ->
       build = grunt.option('build')
       config.rpmVersion = build
       grunt.task.run [
-        'clean:rpm'
+        'clean'
         'easy_rpm'
       ]
 
