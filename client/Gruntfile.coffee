@@ -7,6 +7,7 @@ module.exports = (grunt) ->
   config =
     rpmName: 'linkr-ui'
     rpmVersion: '0'
+    dist: 'dist'
 
   grunt.initConfig
     config: config
@@ -37,8 +38,8 @@ module.exports = (grunt) ->
           cwd: '<%= config.dist %>'
           src: '**/*'
           dest: "/var/www/html/<%= config.rpmName %>"
-          user: 'node'
-          group: 'node'
+          user: 'www-data'
+          group: 'www-data'
         ]
 
   grunt.registerTask "distribute", ->

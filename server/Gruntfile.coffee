@@ -9,6 +9,7 @@ module.exports = (grunt) ->
   config =
     rpmName: 'linkr-api'
     rpmVersion: '0'
+    dist: 'dist'
 
   grunt.initConfig
     config: config
