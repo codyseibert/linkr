@@ -12,14 +12,14 @@ connect = require 'gulp-connect'
 path = require 'path'
 
 gulp.task 'clean', ->
-  del.sync [ 'tmp', 'build', 'dist' ]
+  del.sync [ 'build', 'dist' ]
 
 gulp.task 'fonts', ->
   gulp.src('node_modules/bootstrap/fonts/*')
     .pipe gulp.dest('dist/fonts')
 
 gulp.task 'copy', ['jade'], ->
-  gulp.src('tmp/templates/index.html')
+  gulp.src('build/templates/index.html')
     .pipe gulp.dest('dist')
     .pipe connect.reload()
 
@@ -27,10 +27,10 @@ gulp.task 'jade', ->
   gulp.src 'app/src/**/*.jade'
     .pipe jade
       pretty: true
-    .pipe gulp.dest 'tmp/templates'
+    .pipe gulp.dest 'build/templates'
 
 gulp.task 'templates', ['jade'], ->
-  gulp.src ['tmp/templates/**/*.html', '!tmp/templates/index.html']
+  gulp.src ['build/templates/**/*.html', '!build/templates/index.html']
     .pipe ngTemplates
       filename: 'templates.js'
       module: 'linkr'
@@ -48,10 +48,10 @@ gulp.task 'coffee', ->
   gulp.src('app/src/**/*.coffee')
     .pipe(coffee({bare: true})
     .on('error', gutil.log))
-    .pipe(gulp.dest('tmp/js'))
+    .pipe(gulp.dest('build/js'))
 
 gulp.task 'scripts', ['coffee'], ->
-  gulp.src('tmp/js/app.js')
+  gulp.src('build/js/app.js')
     .pipe(browserify({}))
     .pipe(gulp.dest('dist'))
     .pipe connect.reload()
