@@ -9,6 +9,7 @@ exec = require('child_process').exec
 async = require('async')
 sync = require('gulp-sync')(gulp)
 rimraf = require('rimraf')
+require('gulp-grunt')(gulp)
 
 gulp.task 'nodemon', ->
   nodemon
@@ -32,6 +33,7 @@ gulp.task 'watch', ->
 gulp.task 'build', sync.sync [
   'clean'
   'coffee'
+  'grunt-copy_node_deps'
 ]
 
 gulp.task 'default', sync.sync [
