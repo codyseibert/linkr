@@ -6,8 +6,8 @@ module.exports = (grunt) ->
 
   config =
     version: '0'
-    name: 'typr'
-    user: 'typr'
+    name: 'linkr'
+    user: 'linkr'
     rpms: 'rpms'
     tmp: 'tmp'
     client:
