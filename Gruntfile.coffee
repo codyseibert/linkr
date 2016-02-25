@@ -37,9 +37,9 @@ module.exports = (grunt) ->
         preInstallScript: ['exit 0']
         postInstallScript: [
           'systemctl daemon-reload'
-          'systemctl enable <%= config.server.name %>.service'
-          'systemctl stop <%= config.server.name %>.service'
-          'systemctl start <%= config.server.name %>.service'
+          'systemctl enable <%= config.name %>.service'
+          'systemctl stop <%= config.name %>.service'
+          'systemctl start <%= config.name %>.service'
         ]
         preUninstallScript: ['exit 0']
         tempDir: '<%= config.tmp %>'
@@ -49,13 +49,13 @@ module.exports = (grunt) ->
         files: [
           cwd: '<%= config.client.dist %>'
           src: '**/*'
-          dest: "/home/<%= config.user %>/<%= config.name %>/client"
+          dest: "/home/<%= config.user %>/client"
           user: '<%= config.user %>'
           group: '<%= config.user %>'
         ,
           cwd: '<%= config.server.dist %>'
           src: '**/*'
-          dest: "/home/<%= config.user %>/<%= config.name %>/server"
+          dest: "/home/<%= config.user %>/server"
           user: '<%= config.user %>'
           group: '<%= config.user %>'
         ,
