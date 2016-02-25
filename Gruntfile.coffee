@@ -53,25 +53,25 @@ module.exports = (grunt) ->
           user: '<%= config.user %>'
           group: '<%= config.user %>'
         ,
-          cwd: '<%= config.dist %>'
+          cwd: '<%= config.server.dist %>'
           src: '**/*'
           dest: "/home/<%= config.user %>/<%= config.name %>/server"
           user: '<%= config.user %>'
           group: '<%= config.user %>'
         ,
-          cwd: 'resources/systemd/'
+          cwd: 'server/resources/systemd/'
           src: '*'
           dest: '/etc/systemd/system/'
           user: 'root'
           group: 'root'
         ,
-          cwd: "templates"
+          cwd: "server/templates"
           src: 'app.log'
           dest: '/var/log/<%= config.name %>'
           user: '<%= config.user %>'
           group: '<%= config.user %>'
         ,
-          cwd: "templates"
+          cwd: "server/templates"
           src: 'error.log'
           dest: '/var/log/<%= config.name %>'
           user: '<%= config.user %>'
