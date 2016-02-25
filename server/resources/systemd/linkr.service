@@ -1,5 +1,5 @@
 [Service]
-WorkingDirectory=/home/linkr/linkr/server
+WorkingDirectory=/home/linkr/server
 ExecStart=/usr/bin/pm2 start --name linkr -e /var/log/linkr/error.log -o /var/log/linkr/app.log --merge-logs server.js
 ExecStop=/usr/bin/pm2 stop linkr
 ExecReload=/usr/bin/pm2 restart linkr
