@@ -1,14 +1,14 @@
 [Service]
-WorkingDirectory=/home/linkr/linkr-api
-ExecStart=/usr/bin/pm2 start --name linkr-api -e /var/log/linkr-api/error.log -o /var/log/linkr-api/app.log --merge-logs server.js
-ExecStop=/usr/bin/pm2 stop linkr-api
-ExecReload=/usr/bin/pm2 restart linkr-api
+WorkingDirectory=/home/linkr/linkr/server
+ExecStart=/usr/bin/pm2 start --name linkr -e /var/log/linkr/error.log -o /var/log/linkr/app.log --merge-logs server.js
+ExecStop=/usr/bin/pm2 stop linkr
+ExecReload=/usr/bin/pm2 restart linkr
 Type=forking
 RemainAfterExit=true
 Restart=no
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=linkr-api
+SyslogIdentifier=linkr
 User=linkr
 Group=linkr
 Environment='NODE_ENV=production'
